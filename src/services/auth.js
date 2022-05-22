@@ -25,3 +25,13 @@ export const authRegister = async (payload) => {
     return [null, error];
   }
 };
+
+export const getCurrentUser = async (token) => {
+  try {
+    const { id } = JSON.parse(atob(token.split('.')[1]));
+    const { data } = await httpClient.get(`api/users/${id}`);
+    return [data.user, null];
+  } catch (error) {
+    return [null, error];
+  }
+};
