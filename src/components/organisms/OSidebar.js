@@ -46,19 +46,19 @@ export const OSidebar = () => {
     {
       name: 'Pedidos',
       icon: ReceiptTaxIcon,
-      path: '/orders/open',
+      path: '',
       can: ['business'],
     },
     {
       name: 'Lista de Restaurantes',
       icon: ReceiptTaxIcon,
-      path: '/list/business',
+      path: '',
       can: ['client'],
     },
     {
       name: 'Pedidos Realizados',
       icon: ReceiptTaxIcon,
-      path: '/orders/made',
+      path: '',
       can: ['client'],
     },
   ];

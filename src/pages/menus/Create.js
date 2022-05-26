@@ -1,4 +1,5 @@
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,10 +12,20 @@ import { MSelect } from "../../components/molecules/forms/MSelect";
 import { AButton } from "../../components/atoms/AButton";
 import { number } from "yup";
 import { createMenu } from "../../store/menuReducer";
+import { getBusinessByUser } from "../../store/businessReducer";
 
 const CreateMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const currentUser = useSelector((state)=> state.auth.currentUser);
+  const currentBusiness = useSelector((state)=>state.business.currentBusiness);
+  // console.log(currentBusiness[0]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    dispatch(getBusinessByUser(currentUser._id)).then(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
   const schema = object({
     typeMenu: string().required("Tipo de menu es requerido"),
@@ -42,6 +53,7 @@ const CreateMenu = () => {
         { name: data.secondName2 },
         { name: data.secondName3 },
       ],
+      business: currentBusiness[0]._id
     };
     dispatch(createMenu(payload)).then(() => {
       navigate("/main");
