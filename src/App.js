@@ -3,7 +3,11 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/Auth/LoginPage';
 import { PageLayout } from './layouts/PageLayout';
 import HomePage  from './pages/Home/Home'
-import CreateMenu from './pages/menus/Create';
+import CreateMenu from './pages/Menus/Create';
+import List from './pages/Business/List';
+import RequestMenu from './pages/Menus/Request';
+import CreateBusiness from './pages/Business/Create';
+import Profile from './pages/Profile/Index'
 
 // private routes
 const PrivateRoute = ({ component: RouteComponent }) => {
@@ -26,6 +30,22 @@ function App() {
       <Route
         path="/menu/create"
         element={<PrivateRoute component={CreateMenu} />}
+      />
+      <Route
+        path="/menu/listbusiness"
+        element={<PrivateRoute component={List} />}
+      />
+      <Route
+        path="/menu/request/:id"
+        element={<PrivateRoute component={RequestMenu} />}
+      />
+      <Route
+        path="/business/create"
+        element={<PrivateRoute component={CreateBusiness} />}
+      />
+      <Route
+        path="/profile"
+        element={<PrivateRoute component={Profile} />}
       />
     </Routes>
   );

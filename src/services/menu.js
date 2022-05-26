@@ -30,10 +30,20 @@ export const updateMenu = async (payload) => {
   }
 };
 
-export const getMenuByUser = async () => {
+export const getMenuAll = async () => {
   try {
     const { data } = await httpClient.get('api/menus');
     return [data.menus, null];
+  } catch (error) {
+    return [null, error];
+  }
+};
+
+export const getMenuByBusiness = async (id) => {
+  try {
+    const { data } = await httpClient.get('api/menus');
+    const menu = data.menus.filter((item)=>(item.business._id === id))
+    return [menu[0], null];
   } catch (error) {
     return [null, error];
   }

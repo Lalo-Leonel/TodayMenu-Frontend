@@ -7,7 +7,7 @@ export const AuthLayout = ({ children }) => (
         {children}
       </section>
       <section className="h-full flex justify-center items-center">
-        <ALogo className="w-32 h-auto fill-secondary-200" />
+        {/* <ALogo className="w-32 h-auto fill-secondary-200" /> */}
       </section>
     </div>
   </div>
